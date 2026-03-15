@@ -1,16 +1,9 @@
-import { stocks } from '../data/stocks'
-import StockCard from '../components/StockCard'
+import StockTicker from '../components/StockTicker'
 
 function Dashboard() {
-  return (
-    <div>
-        {
-            stocks.map(stock => (
-                <StockCard key={stock.ticker} stock={stock}></StockCard>    
-            ))
-        }
-    </div>
-  )
+    return (
+        <StockTicker />
+    )
 }
 
 export default Dashboard
