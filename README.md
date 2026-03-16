@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# Bullseye UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A mock stock trading simulation built with React and TypeScript. Users can browse fake stocks, view 24-hour price charts, buy and sell shares, and track their portfolio value over time.
 
-Currently, two official plugins are available:
+This project was built as a proof of concept to demonstrate proficiency with modern React development patterns.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- React 18
+- TypeScript
+- Vite
+- React Router
+- TanStack Query
+- Axios
+- Recharts
+- Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Live stock price updates every 5 seconds
+- 24-hour price history chart per stock
+- Buy shares via dollar amount (fractional shares supported)
+- Portfolio page with holdings, cash balance, and gain/loss tracking
+- Dashboard with real-time portfolio value graph
+- Stock ticker on dashboard
+- Search stocks by name or ticker
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Architecture
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The frontend follows a clean separation of concerns:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- `src/api/` — all HTTP calls to the backend API
+- `src/context/` — React context objects for global state
+- `src/components/` — reusable UI components
+- `src/pages/` — page-level components mapped to routes
+- `src/hooks/` — custom React hooks for shared logic
+- `src/types/` — TypeScript interfaces
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Global state is managed via two React contexts:
+- `StockContext` — live stock prices, updated every 5 seconds via polling
+- `PortfolioContext` — user holdings and cash balance, synced with the backend
+
+## Getting Started
+
+1. Make sure the [Bullseye API](https://github.com/benfrastructure/bullseye-api) is running
+2. Clone this repo
+3. Install dependencies:
+```bash
+   npm install
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+4. Start the dev server:
+```bash
+   npm run dev
 ```
+5. Open `http://localhost:5173`
+
+## Known Limitations
+
+This is a proof of concept. In a production version:
+
+- Authentication and user accounts would be required
+- Stock data would come from a real market data provider
+- Portfolio and price history would persist in a database
+- The app would be deployed behind HTTPS with proper environment configuration
