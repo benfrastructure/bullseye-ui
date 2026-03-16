@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
 .ticker-wrapper {
   overflow: hidden;
   white-space: nowrap;
   background-color: #111;
   color: #fff;
   padding: 8px 0;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .ticker-track {
@@ -13,7 +16,21 @@
 }
 
 .ticker-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
   margin-right: 80px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.ticker-symbol {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.ticker-price {
+  font-size: 0.8rem;
 }
 
 @keyframes ticker-scroll {

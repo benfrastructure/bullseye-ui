@@ -1,17 +1,20 @@
+import './StockCard.css'
 import type { Stock } from '../types/Stock'
+import { useNavigate } from 'react-router-dom'
 
 interface StockCardProps {
     stock: Stock
 }
 
 function StockCard({ stock }: StockCardProps) {
+  const navigate = useNavigate()
+
   return (
-    <div>
-        <h2>{stock.ticker}</h2>
-        <p>{stock.companyName}</p>
-        <p>${stock.price.toFixed(2)}</p>
-        <p>{stock.sector}</p>
-    </div>
+    <tr onClick={() => navigate(`/stock/${stock.ticker}`)}>
+        <td>{stock.ticker}</td>
+        <td>{stock.companyName}</td>
+        <td>${stock.price.toFixed(2)}</td>
+    </tr>
   )
 }
 
