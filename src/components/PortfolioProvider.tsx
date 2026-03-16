@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { PortfolioContext } from '../context/PortfolioContext'
 import type { Holding } from '../types/Holding'
+import { fetchPortfolio, buyShares as apiBuyShares, sellShares as apiSellShares } from '../api/api'
 
 const STARTING_BALANCE = 100000
 
@@ -8,32 +9,25 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
   const [holdings, setHoldings] = useState<Holding[]>([])
   const [cashBalance, setCashBalance] = useState(STARTING_BALANCE)
 
-  function buyShares(ticker: string, shares: number, price: number) {
-    const cost = shares * price
-    if (cost > cashBalance) return
-    setCashBalance(prev => prev - cost)
-    setHoldings(prev => [...prev, { ticker, shares, purchasePrice: price }])
+  useEffect(() => {
+    fetchPortfolio().then(data => {
+      setHoldings(data.holdings)
+      setCashBalance(data.cashBalance)
+    })
+  }, [])
+
+  async function buyShares(ticker: string, shares: number, price: number) {
+    await apiBuyShares(ticker, shares, price)
+    const data = await fetchPortfolio()
+    setHoldings(data.holdings)
+    setCashBalance(data.cashBalance)
   }
 
-  function sellShares(ticker: string, shares: number, price: number) {
-    let sharesToSell = shares
-    const updatedHoldings = []
-
-    for (const holding of holdings) {
-      if (holding.ticker !== ticker || sharesToSell <= 0) {
-        updatedHoldings.push(holding)
-        continue
-      }
-      if (holding.shares <= sharesToSell) {
-        sharesToSell -= holding.shares
-      } else {
-        updatedHoldings.push({ ...holding, shares: holding.shares - sharesToSell })
-        sharesToSell = 0
-      }
-    }
-
-    setCashBalance(prev => prev + shares * price)
-    setHoldings(updatedHoldings)
+  async function sellShares(ticker: string, shares: number, price: number) {
+    await apiSellShares(ticker, shares, price)
+    const data = await fetchPortfolio()
+    setHoldings(data.holdings)
+    setCashBalance(data.cashBalance)
   }
 
   return (

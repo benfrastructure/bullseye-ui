@@ -1,48 +1,21 @@
 import { useState, useEffect } from 'react'
 import type { Stock } from '../types/Stock'
-import type { PricePoint } from '../types/PricePoint'
-import { stocks as initialStocks } from '../data/stocks'
-
-function randomMovement(price: number): number {
-    const change = (Math.random() - 0.5) * 0.5
-    return Math.max(0.01, parseFloat((price + change).toFixed(2)))
-}
-
-function getCurrentTime(): number {
-  const now = new Date()
-  return now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()
-}
+import { fetchStocks } from '../api/api'
 
 export function useStockPrices() {
-    const [stocks, setStocks] = useState<Stock[]>(initialStocks)
-    const [priceHistory, setPriceHistory] = useState<Record<string, PricePoint[]>>(() =>
-        Object.fromEntries(initialStocks.map(stock => [stock.ticker, [{ time: getCurrentTime(), price: stock.price }]]))
-    )
+  const [stocks, setStocks] = useState<Stock[]>([])
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-        const time = getCurrentTime()
+  useEffect(() => {
+    // Initial load from API
+    fetchStocks().then(data => setStocks(data))
 
-        setStocks(prev => {
-            const updated = prev.map(stock => ({
-            ...stock,
-            price: randomMovement(stock.price)
-            }))
+    // Poll for updated prices every 5 seconds
+    const interval = setInterval(() => {
+      fetchStocks().then(data => setStocks(data))
+    }, 5000)
 
-            setPriceHistory(prevHistory => {
-            const newHistory: Record<string, PricePoint[]> = {}
-            for (const stock of updated) {
-                newHistory[stock.ticker] = [...(prevHistory[stock.ticker] || []), { time, price: stock.price }]
-            }
-            return newHistory
-            })
+    return () => clearInterval(interval)
+  }, [])
 
-            return updated
-        })
-        }, 5000)
-
-        return () => clearInterval(interval)
-    }, [])
-
-    return { stocks, priceHistory }
+  return { stocks }
 }

@@ -1,17 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useStocks } from '../hooks/useStocks'
+import { fetchPriceHistory } from '../api/api'
+import type { PricePoint } from '../types/PricePoint'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import BuyModal from '../components/BuyModal'
 import './Stock.css'
 
 function Stock() {
   const { ticker } = useParams()
-  const { stocks, priceHistory } = useStocks()
+  const { stocks } = useStocks()
+  const [history, setHistory] = useState<PricePoint[]>([])
   const [showBuyModal, setShowBuyModal] = useState(false)
 
   const stock = stocks.find(s => s.ticker === ticker)
-  const history = priceHistory[ticker ?? ''] ?? []
+
+  useEffect(() => {
+    if (!ticker) return
+    fetchPriceHistory(ticker).then(data => setHistory(data))
+
+    const interval = setInterval(() => {
+      fetchPriceHistory(ticker).then(data => setHistory(data))
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [ticker])
 
   if (!stock) return <p>Stock not found.</p>
 

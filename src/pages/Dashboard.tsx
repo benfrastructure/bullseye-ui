@@ -47,20 +47,20 @@ function Dashboard() {
               }}
             />
             <YAxis
-              domain={['auto', 'auto']}
-              stroke="#4dbda0"
-              tick={{ fill: '#4dbda0' }}
+                domain={['auto', 'auto']}
+                stroke="#4dbda0"
+                tick={{ fill: '#4dbda0' }}
             />
             <Tooltip
-              contentStyle={{ backgroundColor: '#111', border: '1px solid #4dbda0', color: '#4dbda0' }}
-              formatter={(value) => [`$${formatCurrency(Number(value))}`, 'Portfolio Value']}
+                contentStyle={{ backgroundColor: '#111', border: '1px solid #4dbda0', color: '#4dbda0' }}
+                formatter={(value) => [`$${formatCurrency(Number(value))}`, 'Portfolio Value']}
             />
             <Line
-              type="monotone"
-              dataKey="price"
-              stroke="#4dbda0"
-              dot={false}
-              isAnimationActive={false}
+                type="monotone"
+                dataKey="value"
+                stroke="#4dbda0"
+                dot={false}
+                isAnimationActive={false}
             />
           </LineChart>
         </ResponsiveContainer>
