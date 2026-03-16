@@ -1,0 +1,85 @@
+.stock-page {
+  padding: 32px;
+  color: #ffffff;
+}
+
+.stock-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.stock-ticker {
+  font-size: 0.85rem;
+  color: #ffffff;
+  font-weight: 400;
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stock-company {
+  font-size: 1.6rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.stock-price {
+  font-size: 1.6rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0;
+}
+
+.chart-container {
+  background-color: #000000;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.stock-details {
+  display: flex;
+  gap: 48px;
+  margin-top: 32px;
+  padding: 24px;
+  background-color: #1a2332;
+  border-radius: 12px;
+}
+
+.stock-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stock-detail-label {
+  font-size: 0.75rem;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stock-detail-value {
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.buy-button {
+  margin-top: 32px;
+  padding: 14px 48px;
+  background-color: #4dbda0;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buy-button:hover {
+  background-color: #3aa88c;
+}

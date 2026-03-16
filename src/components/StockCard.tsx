@@ -1,9 +1,8 @@
-import './StockCard.css'
 import type { Stock } from '../types/Stock'
 import { useNavigate } from 'react-router-dom'
 
 interface StockCardProps {
-    stock: Stock
+  stock: Stock
 }
 
 function StockCard({ stock }: StockCardProps) {
@@ -11,9 +10,9 @@ function StockCard({ stock }: StockCardProps) {
 
   return (
     <tr onClick={() => navigate(`/stock/${stock.ticker}`)}>
-        <td>{stock.ticker}</td>
-        <td>{stock.companyName}</td>
-        <td>${stock.price.toFixed(2)}</td>
+      <td className="ticker-cell">{stock.ticker}</td>
+      <td>{stock.companyName}</td>
+      <td>${stock.price.toFixed(2)}</td>
     </tr>
   )
 }

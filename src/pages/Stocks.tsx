@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useStocks } from '../hooks/useStocks'
 import StockCard from '../components/StockCard'
+import './Stocks.css'
 
 function Stocks() {
   const { stocks } = useStocks()
@@ -13,7 +14,7 @@ function Stocks() {
 
   return (
     <div className="stocks-container">
-      <h1>Stocks</h1>
+      <h1 className="stocks-title">Stocks</h1>
       <input
         className="stocks-search"
         type="text"

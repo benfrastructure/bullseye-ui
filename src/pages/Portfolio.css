@@ -1,0 +1,99 @@
+.portfolio-page {
+  padding: 32px;
+  color: #ffffff;
+}
+
+.portfolio-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+}
+
+.portfolio-summary {
+  display: flex;
+  gap: 48px;
+  padding: 24px;
+  background-color: #1a2332;
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
+
+.portfolio-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.portfolio-summary-label {
+  font-size: 0.75rem;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.portfolio-summary-value {
+  font-size: 1.4rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.portfolio-empty {
+  color: #888888;
+  font-size: 1rem;
+}
+
+.portfolio-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.portfolio-table th {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid #3a4555;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #888888;
+}
+
+.portfolio-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #1a2332;
+  color: #ffffff;
+}
+
+.portfolio-ticker {
+  color: #4dbda0;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.gain {
+  color: #4dbda0;
+  font-weight: 500;
+}
+
+.loss {
+  color: #e53e3e;
+  font-weight: 500;
+}
+
+.sell-button {
+  padding: 6px 16px;
+  background-color: transparent;
+  border: 1px solid #e53e3e;
+  border-radius: 6px;
+  color: #e53e3e;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sell-button:hover {
+  background-color: #e53e3e;
+  color: #ffffff;
+}

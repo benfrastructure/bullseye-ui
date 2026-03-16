@@ -1,0 +1,130 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #1a2332;
+  border-radius: 12px;
+  padding: 32px;
+  width: 400px;
+  border: 1px solid #3a4555;
+}
+
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #4dbda0;
+  margin: 0 0 4px 0;
+}
+
+.modal-company {
+  font-size: 0.9rem;
+  color: #888888;
+  margin: 0 0 16px 0;
+}
+
+.modal-price,
+.modal-cash {
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.modal-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 24px 0 16px 0;
+}
+
+.modal-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888888;
+}
+
+.modal-input {
+  padding: 10px 16px;
+  background-color: #2d3748;
+  border: 1px solid #3a4555;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.modal-input:focus {
+  border-color: #4dbda0;
+}
+
+.modal-total {
+  font-size: 0.95rem;
+  color: #4dbda0;
+  margin: 0 0 24px 0;
+}
+
+.modal-error {
+  color: #e53e3e;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.modal-cancel {
+  padding: 10px 24px;
+  background-color: transparent;
+  border: 1px solid #3a4555;
+  border-radius: 8px;
+  color: #888888;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-cancel:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.modal-confirm {
+  padding: 10px 24px;
+  background-color: #4dbda0;
+  border: none;
+  border-radius: 8px;
+  color: #000000;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal-confirm:hover {
+  background-color: #3aa88c;
+}
+
+.modal-confirm:disabled {
+  background-color: #2d5a4e;
+  color: #666666;
+  cursor: not-allowed;
+}
+
+.modal-shares {
+  font-size: 0.85rem;
+  color: #888888;
+  margin: 0 0 16px 0;
+}
